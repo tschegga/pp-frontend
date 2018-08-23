@@ -1,0 +1,11 @@
+/* Additional styles for the page.
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Padding for sticky navbar */
+    padding-top: 80px;
+}
