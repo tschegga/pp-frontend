@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Home(props) {
-    console.log(props);
+export default function Home() {
     return(
         <div>Ich grüße dich, geehrter Potter</div>
     );
