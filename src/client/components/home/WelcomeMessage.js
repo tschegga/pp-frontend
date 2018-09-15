@@ -18,11 +18,9 @@ const WelcomeMessage = () => {
     ]
     
     return (
-        <div className="card">
-            <div className="card-header">
-                Message of the day
-            </div>
+        <div className="card bg-info text-white">
             <div className="card-body">
+                <h6 className="card-title">Message of the day</h6>
                 {randomMessage(messages)}
             </div>
         </div>
