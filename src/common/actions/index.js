@@ -3,7 +3,7 @@ export const LOGOUT = 'LOGOUT';
 
 const checkLogin = (username, password) => {
     if (username == 'admin' && password == 'admin') {
-        return { loggedIn: true, username: 'admin' }
+        return { loggedIn: true, username: 'admin', rank: 1, sessions: [1,2,3] }
     } else {
         return { loggedIn: false };
     }
