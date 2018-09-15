@@ -20,7 +20,7 @@ const WelcomeMessage = () => {
     return (
         <div className="card bg-info text-white">
             <div className="card-body">
-                <h6 className="card-title">Message of the day</h6>
+                <h5 className="card-title">Message of the day</h5>
                 {randomMessage(messages)}
             </div>
         </div>
