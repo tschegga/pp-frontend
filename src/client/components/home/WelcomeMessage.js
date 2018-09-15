@@ -7,7 +7,7 @@ const randomMessage = (messages) => {
 
 const WelcomeMessage = () => {
     let messages = [
-        'Angst, Potter? - Draco Malfoy zu Beginn des trimagischen Pottrennens',
+        '"Angst, Potter?" - Draco Malfoy zu Beginn des trimagischen Pottrennens',
         'Auf das deine Beine auf dem Pott nicht einschlafen mögen!',
         '"Ich finde den Pottpokal echt dufte" - Albert Einstein',
         'Fun Fact: In den Jahren 1828 bis 1872 war der Pottpokal teil des olympischen Zehnkampfs',
