@@ -1,7 +1,11 @@
 import React from 'react';
 
+import WelcomeMessage from './WelcomeMessage';
+
 export default function Home() {
     return(
-        <div>Ich grüße dich, geehrter Potter</div>
+        <div>
+            <WelcomeMessage />
+        </div>
     );
 }
