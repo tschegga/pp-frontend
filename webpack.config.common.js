@@ -21,10 +21,15 @@ module.exports = {
         test:    /\.js$/,
         loader:  'eslint',
         exclude: /node_modules/
+      },
+      {
+          test: /\.css/,
+          loaders: ['style', 'css'],
+          exclude: /node_modules/
       }
     ]
   },
   node: {
-    fs: "empty"
+    fs: 'empty'
   }
 };

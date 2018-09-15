@@ -3,20 +3,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import styles from './loginModal.css';
+
 class LoginModal extends React.Component {
     constructor() {
         super();
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            signUpMode: false
         };
 
         this.doAction = this.doAction.bind(this);
+        this.toggleLoginSignup = this.toggleLoginSignup.bind(this);
+        this.getChangeModeLine = this.getChangeModeLine.bind(this);
+        this.getButton = this.getButton.bind(this);
     }
 
     doAction = () => {
-        this.props.doLogin(this.state.username, this.state.password);
+        if (this.state.signUpMode) {
+            //TODO: implement
+            console.log('USER SHOULD BE CREATED NOW');
+        } else {
+            this.props.doLogin(this.state.username, this.state.password);
+        }
         window.location.replace('#/home');
     }
 
@@ -26,13 +37,57 @@ class LoginModal extends React.Component {
         this.setState(tmpSession);
     }
 
+    toggleLoginSignup = () => {
+        if (this.state.signUpMode) {
+            this.setState({
+                signUpMode: false
+            });
+        } else {
+            this.setState({
+                signUpMode: true
+            });
+        }
+    }
+
+    getChangeModeLine = () => {
+        if (this.state.signUpMode) {
+            return (
+                <div className="col">
+                    Already have an account? <button className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Login</button>
+                </div>
+            );
+        } else {
+            return (
+                <div className="col">
+                    <div>Don't have an account? <button className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Create one</button></div>
+                </div>
+            );
+        }
+    }
+
+    getButton = () => {
+        if (this.state.signUpMode) {
+            return (
+                <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={this.doAction}>Sign Up</button>
+
+            );
+        } else {
+            return (
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.doAction}>Login</button>
+            );
+        }
+    }
+
     render() {
+        let changeModeLine = this.getChangeModeLine();
+        let button = this.getButton();
+
         return(
             <div className="modal fade" id="loginModal" role="dialog">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Login</h5>
+                            <h5 className="modal-title">{this.state.signUpMode ? 'Sign Up' : 'Login'}</h5>
                         </div>
                         <div className="modal-body">
                             <div className="container-fluid">
@@ -48,11 +103,14 @@ class LoginModal extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="row">
+                                    {changeModeLine}
+                                </div>
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.doAction}>Login</button>
+                            {button}
                         </div>
                     </div>
                 </div>
