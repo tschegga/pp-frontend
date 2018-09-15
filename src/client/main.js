@@ -1,12 +1,12 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'
-import { auth } from './reducers/login'
+
+import { Provider } from 'react-redux';
+import store from '../common/store/store';
 
 import Layout from './components/Layout';
 import Ranking from './components/ranking/rankingController';
-import LoginController from './components/LoginController';
 import SessionController from './components/sessions/SessionController';
 import Home from './components/home/Home';
 import NoMatch from './components/NoMatch';
@@ -16,19 +16,25 @@ import { Router, Route, Redirect } from 'react-router';
 import createHistory from 'history/lib/createHashHistory';
 const history = createHistory({queryKey: false});
 
-//const store = createStore(auth);
-const store = { id: 'me' }
-
+// All the routes for the application
 const router = <Router history={history}>
-    <Redirect from="/" to="/home" />
+    <Redirect from="/" to="/ranking" />
     <Route path="/" component={Layout}>
-        <Route path="home" render={(props) => <Home {...props} store={store} />} />
+        <Route path="home" component={Home} />
         <Route path="ranking" component={Ranking} />
-        <Route path="login(/:redirect)" component={LoginController} />
         <Route path="sessions" component={SessionController} />
         <Route path="*" component={NoMatch} />
     </Route>
 </Router>;
 
+// Provider for redux store
+const provider = (
+    <Provider store={store}>
+        {router}
+    </Provider>
+);
+
+// Mount point for the application
 const mount = document.getElementById('pottpokalAppMountpoint');
-ReactDOM.render(router, mount);
+
+ReactDOM.render(provider, mount);

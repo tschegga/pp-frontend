@@ -12,3 +12,11 @@ export function fetchData(path) {
             console.error('Parsing failed', ex);
         });
 }
+
+export function requestLogin() {
+    return ({
+        username: 'admin',
+        userId: 1,
+        role: 'ADMIN',
+    });
+}
