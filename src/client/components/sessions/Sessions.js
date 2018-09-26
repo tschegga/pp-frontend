@@ -1,7 +1,12 @@
 import React from 'react';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import moment from 'moment';
 
-export default function Sessions({sessions}) {
+function Sessions({sessions}) {
+    console.log(sessions);
     let cards = [];
 
     if (sessions.length > 0) {
@@ -55,3 +60,17 @@ function makeStyle(level) {
         return 'card';
     }
 }
+
+import * as Actions from '../../../common/actions';
+
+const mapStateToProps = (state) => {
+    return {
+        sessions: state.user.sessions
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sessions);

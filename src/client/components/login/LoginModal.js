@@ -81,7 +81,7 @@ class LoginModal extends React.Component {
 
     render() {
         let changeModeLine = this.getChangeModeLine();
-        let button = this.getButton();
+        let actionButton = this.getButton();
 
         return(
             <div className="modal fade" id="loginModal" role="dialog">
@@ -111,7 +111,7 @@ class LoginModal extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            {button}
+                            {actionButton}
                         </div>
                     </div>
                 </div>
