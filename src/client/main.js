@@ -6,7 +6,7 @@ import store from '../common/store/store';
 
 import Layout from './components/Layout';
 import Ranking from './components/ranking/rankingController';
-import SessionController from './components/sessions/SessionController';
+import Sessions from './components/sessions/Sessions';
 import Home from './components/home/Home';
 import NoMatch from './components/NoMatch';
 
@@ -21,7 +21,7 @@ const router = <Router history={history}>
     <Route path="/" component={Layout}>
         <Route path="home" component={Home} />
         <Route path="ranking" component={Ranking} />
-        <Route path="sessions" component={SessionController} />
+        <Route path="sessions" component={Sessions} />
         <Route path="*" component={NoMatch} />
     </Route>
 </Router>;
