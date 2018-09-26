@@ -15,7 +15,7 @@ import { Router, Route, Redirect } from 'react-router';
 import createHistory from 'history/lib/createHashHistory';
 const history = createHistory({queryKey: false});
 
-// All the routes for the application
+// All routes for the application
 const router = <Router history={history}>
     <Redirect from="/" to="/ranking" />
     <Route path="/" component={Layout}>

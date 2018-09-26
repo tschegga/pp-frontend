@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
 function Sessions({sessions}) {
-    console.log(sessions);
     let cards = [];
 
     if (sessions.length > 0) {
