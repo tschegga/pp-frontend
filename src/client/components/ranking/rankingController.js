@@ -16,14 +16,18 @@ export default class RankingController extends React.Component {
     }
 
     componentDidMount() {
-        fetchData('/v1/ranking').then(ranking => {
-            this.setState({
-                ranking: ranking
+        fetchData('/v1/ranking')
+            .then(ranking => {
+                if (ranking != null) {
+                    this.setState({
+                        ranking: ranking
+                    });
+                }
             });
-        });
     }
 
     render() {
+        console.log(this.state);
         return(
             <Ranking ranking={this.state.ranking} />
         );
