@@ -3,9 +3,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+
 import LoggedInNavbar from './login/LoggedInNavbar';
 import LoginModal from './login/LoginModal';
 import LogoutModal from './login/LogoutModal';
+
+import Ranking from './ranking/rankingController';
+import Sessions from './sessions/Sessions';
+import Home from './home/Home';
+import NoMatch from './NoMatch';
+
 
 function Layout(props) {
     console.log(props);
@@ -35,9 +43,15 @@ function Layout(props) {
                 </nav>
             
                 <div>
-                    <div>
-                        {props.children}
-                    </div>    
+                    <Switch>
+                        <Route exact path="/">
+                            <Redirect to="/nomatch" />
+                        </Route>
+                        <Route path="/home" component={Home} />
+                        <Route path="/ranking" component={Ranking} />
+                        <Route path="/sessions" component={Sessions} />
+                        <Route path="*" component={NoMatch} />
+                    </Switch>
                 </div>
             </div>
             <LoginModal />
@@ -45,9 +59,6 @@ function Layout(props) {
         </div>
     );
 }
-Layout.propTypes = {
-    children: React.PropTypes.element.isRequired
-};
 
 import * as Actions from '../../common/actions';
 
@@ -61,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

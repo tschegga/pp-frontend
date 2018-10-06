@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Overview = ({user}) => {
     return(
@@ -28,7 +29,7 @@ const Overview = ({user}) => {
 }
 
 Overview.propTypes = {
-    user: React.PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
 };
 
 export default Overview;
