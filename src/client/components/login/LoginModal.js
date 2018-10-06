@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// eslint-disable-next-line no-unused-vars
-import styles from './loginModal.css';
+import styles from './loginModal.css'; // eslint-disable-line no-unused-vars
+
 
 class LoginModal extends React.Component {
     constructor() {
