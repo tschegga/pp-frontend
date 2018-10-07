@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AddSession = () => {
-    return (
-        <div>
-            Addsession
-        </div>
-    );
+export class AddSession extends React.Component {
+    render() {
+        return (
+            <div>
+                Addsession
+            </div>
+        );
+    }
 }
-
-export default AddSession;
