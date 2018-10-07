@@ -84,13 +84,13 @@ class LoginModal extends React.Component {
         let actionButton = this.getButton();
 
         return(
-            <div className="modal fade" id="loginModal" role="dialog">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">{this.state.signUpMode ? 'Sign Up' : 'Login'}</h5>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <h5>{this.state.signUpMode ? 'Sign Up' : 'Login'}</h5>
                         </div>
-                        <div className="modal-body">
+                        <div>
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col">
@@ -109,7 +109,7 @@ class LoginModal extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="modal-footer">
+                        <div>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                             {actionButton}
                         </div>

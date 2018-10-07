@@ -50,11 +50,11 @@ function Layout(props) {
                         <Route path="/home" component={Home} />
                         <Route path="/ranking" component={Ranking} />
                         <Route path="/sessions" component={Sessions} />
+                        <Route path="/login" component={LoginModal} />
                         <Route path="*" component={NoMatch} />
                     </Switch>
                 </div>
             </div>
-            <LoginModal />
             <LogoutModal />
         </div>
     );

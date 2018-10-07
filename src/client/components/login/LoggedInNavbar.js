@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoggedInNavbar = ({user}) => {
     if (user.loggedIn) {
@@ -12,7 +13,7 @@ const LoggedInNavbar = ({user}) => {
         return (
             <div className="navbar-nav ml-auto">
                 <span className="navbar-text mr-2">You are not logged in</span>
-                <button className="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#loginModal">Login</button>
+                <Link className="btn btn-outline-dark btn-sm" to="/login">Login</Link>
             </div>
         );
     }
