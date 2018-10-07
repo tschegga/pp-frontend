@@ -3,7 +3,7 @@ import React from 'react';
 const AddSession = () => {
     return (
         <div>
-            AddSession
+            Addsession
         </div>
     );
 }

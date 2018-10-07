@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import WelcomeMessage from './WelcomeMessage';
 import Overview from './Overview';
@@ -11,6 +12,7 @@ const Home = (props) => {
         <div>
             <WelcomeMessage />
             <Overview user={props.user} sessions={props.sessions} />
+            <Link to="/addsession" role="button" className="mt-3 btn btn-outline-secondary btn-lg btn-block">Add session</Link>
             <Counter />
         </div>
     );
