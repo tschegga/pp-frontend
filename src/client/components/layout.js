@@ -11,6 +11,7 @@ import LogoutModal from './login/LogoutModal';
 
 import Ranking from './ranking/rankingController';
 import Sessions from './sessions/Sessions';
+import AddSession from './sessions/AddSession';
 import Home from './home/Home';
 import NoMatch from './NoMatch';
 
@@ -51,6 +52,7 @@ function Layout(props) {
                         <Route path="/ranking" component={Ranking} />
                         <Route path="/sessions" component={Sessions} />
                         <Route path="/login" component={LoginModal} />
+                        <Route path="/addsession" component={AddSession} />
                         <Route path="*" component={NoMatch} />
                     </Switch>
                 </div>

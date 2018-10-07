@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 
@@ -30,8 +31,11 @@ function Sessions({sessions}) {
     }
 
     return(
-        <div className="card-group">
-            {cards}
+        <div>
+            <Link to="/addsession" role="button" className="mb-3 btn btn-outline-primary btn-lg btn-block">Add session</Link>
+            <div className="card-group">
+                {cards}
+            </div>
         </div>
     );
 }
