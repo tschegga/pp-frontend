@@ -1,10 +1,13 @@
 import React from 'react';
 
-export class AddSession extends React.Component {
+import DatePicker from 'react-mobile-datepicker';
+
+export default class AddSession extends React.Component {
     render() {
         return (
             <div>
                 Addsession
+                <DatePicker isOpen={true} />
             </div>
         );
     }
