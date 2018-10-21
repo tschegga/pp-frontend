@@ -1,17 +1,17 @@
 import { createStore, combineReducers } from 'redux';
-import { userReducer } from '../reducers/login';
+import userReducer from '../reducers/login';
 
 const initialState = {
     user: {
-        loggedIn: false
-    }
+        loggedIn: false,
+    },
 };
 
 const store = createStore(
     combineReducers({
-        user: userReducer
+        user: userReducer,
     }),
-    initialState
+    initialState,
 );
 
 export default store;

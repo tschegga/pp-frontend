@@ -1,15 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import * as Actions from '../../../common/actions/index';
 
 const LogoutModal = (props) => {
     const doAction = () => {
         props.doLogout();
         window.location.replace('#/ranking');
-    }
+    };
 
-    return(
+    const { user: { username } } = props;
+    return (
         <div className="modal fade" id="logoutModal" role="dialog">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -18,7 +22,8 @@ const LogoutModal = (props) => {
                     </div>
                     <div className="modal-body">
                         <div className="container-fluid">
-                            {props.user.username} do you really want to log out?
+                            {username}
+                            &nbsp;do you really want to log out?
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -29,18 +34,15 @@ const LogoutModal = (props) => {
             </div>
         </div>
     );
-}
+};
 
-import * as Actions from '../../../common/actions/index';
+LogoutModal.propTypes = {
+    user: PropTypes.element.isRequired,
+    doLogout: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = (state) => {
-  return {
-      user: state.user
-  };
-}
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch);
-}
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutModal);

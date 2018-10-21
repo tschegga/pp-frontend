@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import styles from './loginModal.css'; // eslint-disable-line no-unused-vars
+import * as Actions from '../../../common/actions/index';
 
+import styles from './loginModal.css'; // eslint-disable-line no-unused-vars
 
 class LoginModal extends React.Component {
     constructor() {
@@ -13,7 +15,7 @@ class LoginModal extends React.Component {
         this.state = {
             username: '',
             password: '',
-            signUpMode: false
+            signUpMode: false,
         };
 
         this.doAction = this.doAction.bind(this);
@@ -22,85 +24,101 @@ class LoginModal extends React.Component {
         this.getButton = this.getButton.bind(this);
     }
 
-    doAction = () => {
-        if (this.state.signUpMode) {
-            //TODO: implement
+    getChangeModeLine() {
+        const { signUpMode } = this.state;
+        if (signUpMode) {
+            return (
+                <div className="col">
+                    Already have an account?&bnsp;
+                    <button type="button" className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Login</button>
+                </div>
+            );
+        }
+
+        return (
+            <div className="col">
+                <div>
+                    Don&apos;t have an account?&bnsp;
+                    <button type="button" className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Create one</button>
+                </div>
+            </div>
+        );
+    }
+
+    getButton() {
+        const { signUpMode } = this.state;
+
+        if (signUpMode) {
+            return (
+                <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={this.doAction}>Sign Up</button>
+            );
+        }
+
+        // return login button
+        return (
+            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.doAction}>Login</button>
+        );
+    }
+
+    doAction() {
+        const { signUpMode, username, password } = this.state;
+        const { doLogin } = this.props;
+
+        if (signUpMode) {
+            // TODO: implement
             console.log('USER SHOULD BE CREATED NOW');
         } else {
-            this.props.doLogin(this.state.username, this.state.password);
+            doLogin(username, password);
         }
         window.location.replace('#/home');
     }
 
-    userInput = (e, stateDescriptor) => {
-        let tmpSession = {};
+    userInput(e, stateDescriptor) {
+        const tmpSession = {};
         tmpSession[stateDescriptor] = e.target.value;
         this.setState(tmpSession);
     }
 
-    toggleLoginSignup = () => {
-        if (this.state.signUpMode) {
+    toggleLoginSignup() {
+        const { signUpMode } = this.state;
+
+        if (signUpMode) {
             this.setState({
-                signUpMode: false
+                signUpMode: false,
             });
         } else {
             this.setState({
-                signUpMode: true
+                signUpMode: true,
             });
-        }
-    }
-
-    getChangeModeLine = () => {
-        if (this.state.signUpMode) {
-            return (
-                <div className="col">
-                    Already have an account? <button className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Login</button>
-                </div>
-            );
-        } else {
-            return (
-                <div className="col">
-                    <div>Don't have an account? <button className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Create one</button></div>
-                </div>
-            );
-        }
-    }
-
-    getButton = () => {
-        if (this.state.signUpMode) {
-            return (
-                <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={this.doAction}>Sign Up</button>
-
-            );
-        } else {
-            return (
-                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.doAction}>Login</button>
-            );
         }
     }
 
     render() {
-        let changeModeLine = this.getChangeModeLine();
-        let actionButton = this.getButton();
-
-        return(
+        const changeModeLine = this.getChangeModeLine();
+        const actionButton = this.getButton();
+        const { signUpMode, username, password } = this.state;
+        return (
             <div>
                 <div>
                     <div>
                         <div>
-                            <h5>{this.state.signUpMode ? 'Sign Up' : 'Login'}</h5>
+                            <h5>{signUpMode ? 'Sign Up' : 'Login'}</h5>
                         </div>
                         <div>
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col">
                                         <div className="form-group">
-                                            <label>Username</label>
-                                            <input value={this.state.username} onChange={(event) => this.userInput(event, 'username')} type="text" className="form-control" id="usernameInput" />
+                                            <label htmlFor="usernameInput">
+                                                Username
+                                                <input value={username} onChange={event => this.userInput(event, 'username')} type="text" className="form-control" id="usernameInput" />
+                                            </label>
                                         </div>
                                         <div className="form-group">
-                                            <label>Password</label>
-                                            <input value={this.state.password} onChange={(event) => this.userInput(event, 'password')} type="password" className="form-control" id="passwordInput" />
+                                            <label htmlFor="passwordInput">
+                                                Password
+                                                <input value={password} onChange={event => this.userInput(event, 'password')} type="password" className="form-control" id="passwordInput" />
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -120,16 +138,12 @@ class LoginModal extends React.Component {
     }
 }
 
-import * as Actions from '../../../common/actions/index';
+LoginModal.propTypes = {
+    doLogin: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    };
-}
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(Actions, dispatch);
-}
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

@@ -5,23 +5,24 @@ import { fetchData } from '../../backend/backend';
 export default class SessionController extends React.Component {
     constructor() {
         super();
-    
+
         this.state = {
-            sessions: []
+            sessions: [],
         };
     }
 
     componentDidMount() {
-        fetchData('/v1/session?userid=2').then(sessions => {
+        fetchData('/v1/session?userid=2').then((sessions) => {
             this.setState({
-                sessions: sessions
+                sessions,
             });
         });
     }
 
     render() {
-        return(
-            <Sessions sessions={this.state.sessions} />
+        const { sessions } = this.state;
+        return (
+            <Sessions sessions={sessions} />
         );
     }
 }
