@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
         if (signUpMode) {
             return (
                 <div className="col">
-                    Already have an account?&bnsp;
+                    Already have an account?&nbsp;
                     <button type="button" className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Login</button>
                 </div>
             );
@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
         return (
             <div className="col">
                 <div>
-                    Don&apos;t have an account?&bnsp;
+                    Don&apos;t have an account?&nbsp;
                     <button type="button" className="btn btn-link login-modal__mode-change" onClick={this.toggleLoginSignup}>Create one</button>
                 </div>
             </div>
