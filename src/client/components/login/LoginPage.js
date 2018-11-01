@@ -8,7 +8,7 @@ import * as Actions from '../../../common/actions/index';
 
 import styles from './loginModal.css'; // eslint-disable-line no-unused-vars
 
-class LoginModal extends React.Component {
+class LoginPage extends React.Component {
     constructor() {
         super();
 
@@ -66,7 +66,7 @@ class LoginModal extends React.Component {
 
         if (signUpMode) {
             // TODO: implement
-            console.log('USER SHOULD BE CREATED NOW');
+            console.log('USER SHOULD BE CREATED NOW'); // eslint-disable-line no-console
         } else {
             doLogin(username, password);
         }
@@ -138,7 +138,7 @@ class LoginModal extends React.Component {
     }
 }
 
-LoginModal.propTypes = {
+LoginPage.propTypes = {
     doLogin: PropTypes.func.isRequired,
 };
 
@@ -146,4 +146,4 @@ const mapStateToProps = state => ({ user: state.user });
 
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

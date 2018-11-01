@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 
 import LoggedInNavbar from './login/LoggedInNavbar';
-import LoginModal from './login/LoginModal';
+import LoginPage from './login/LoginPage';
 import LogoutModal from './login/LogoutModal';
 
 import * as Actions from '../../common/actions';
@@ -24,7 +24,6 @@ import NoMatch from './NoMatch';
 
 
 function Layout(props) {
-    console.log(props);
     const { user } = props;
     return (
         <div>
@@ -55,12 +54,12 @@ function Layout(props) {
                 <div>
                     <Switch>
                         <Route exact path="/">
-                            <Redirect to="/nomatch" />
+                            <Redirect to="/ranking" />
                         </Route>
                         <Route path="/home" component={Home} />
                         <Route path="/ranking" component={Ranking} />
                         <Route path="/sessions" component={Sessions} />
-                        <Route path="/login" component={LoginModal} />
+                        <Route path="/login" component={LoginPage} />
                         <Route path="/addsession" component={AddSession} />
                         <Route path="*" component={NoMatch} />
                     </Switch>

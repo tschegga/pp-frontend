@@ -18,7 +18,8 @@ export function fetchData(path) {
         .then(handleErrors)
         .then(response => response.json())
         .catch((err) => {
-            console.error(err);
+            // TODO: proper error handling
+            console.error(err); // eslint-disable-line no-console
         });
 }
 
