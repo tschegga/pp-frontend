@@ -58,6 +58,7 @@
     "react-redux": "^4.4.9",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "tls": "0.0.1"
   },
   "bugs": {

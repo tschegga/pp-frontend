@@ -1,12 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Ranking({ ranking }) {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
+
+import * as Actions from '../../../common/actions';
+
+function Ranking(props) {
+    const { ranking: { isFetching } } = props;
+    if (isFetching) {
+        return (
+            <div>Fetching</div>
+        );
+    }
+
+    const { ranking: { rankingArray } } = props;
     const tbody = [];
 
-    if (ranking.length > 0) {
-        for (let i = 0; i < ranking.length; i += 1) {
-            const e = ranking[i];
+    if (rankingArray.length > 0) {
+        for (let i = 0; i < rankingArray.length; i += 1) {
+            const e = rankingArray[i];
             tbody.push(
                 <tr key={i}>
                     <td>{i + 1}</td>
@@ -37,5 +51,21 @@ export default function Ranking({ ranking }) {
 }
 
 Ranking.propTypes = {
-    ranking: PropTypes.element.isRequired,
+    ranking: PropTypes.shape({
+        isFetching: PropTypes.bool.isRequired,
+        rankingArray: PropTypes.arrayOf(PropTypes.element),
+    }),
 };
+
+Ranking.defaultProps = {
+    ranking: {
+        isFetching: false,
+        rankingArray: [],
+    },
+};
+
+const mapStateToProps = state => ({ ranking: state.ranking });
+
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Ranking));

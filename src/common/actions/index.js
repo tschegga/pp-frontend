@@ -1,5 +1,3 @@
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
 
 const checkLogin = (username, password) => {
     if (username === 'admin' && password === 'admin') {
@@ -22,6 +20,7 @@ const checkLogin = (username, password) => {
         ];
         return {
             loggedIn: true,
+            isFetching: false,
             username: 'admin',
             rank: 1,
             sessions: tmpSessions,
@@ -29,9 +28,10 @@ const checkLogin = (username, password) => {
     }
 
     // else
-    return { loggedIn: false };
+    return { loggedIn: false, isFetching: false };
 };
 
+export const LOGIN = 'LOGIN';
 export function doLogin(username, password) {
     const user = checkLogin(username, password);
     return {
@@ -40,10 +40,48 @@ export function doLogin(username, password) {
     };
 }
 
+export const LOGOUT = 'LOGOUT';
 export function doLogout() {
     const user = { loggedIn: false };
     return {
         type: LOGOUT,
         user,
+    };
+}
+
+function receiveUser(json) {
+    return json;
+}
+
+export const REQUEST_SIGNUP = 'REQUEST_SIGNUP';
+function requestSignup(username, password) {
+    return {
+        type: REQUEST_SIGNUP,
+        username,
+        password,
+    };
+}
+
+export const SIGNUP = 'SIGNUP';
+export function doSignup(username, password) {
+    return {
+        type: SIGNUP,
+        username,
+        password,
+    };
+}
+
+export function fetchSignup(username, password) {
+    return function (dispatch) {
+        dispatch(requestSignup(username, password));
+
+        return fetch('http://localhost:1337')
+            .then(
+                response => response.json(),
+                error => console.log(error),
+            )
+            .then(
+                json => dispatch(receiveUser(json)),
+            );
     };
 }

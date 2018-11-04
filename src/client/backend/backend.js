@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import 'isomorphic-fetch';
 
-const BACKEND_URL = 'http://localhost:1337';
+export const BACKEND_URL = 'http://localhost:1337';
 
 const handleErrors = (response) => {
     if (!response.ok) {

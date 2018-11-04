@@ -16,7 +16,7 @@ import LoginPage from './login/LoginPage';
 import LogoutModal from './login/LogoutModal';
 
 import * as Actions from '../../common/actions';
-import Ranking from './ranking/rankingController';
+import Ranking from './ranking/Ranking';
 import Sessions from './sessions/Sessions';
 import AddSession from './sessions/AddSession';
 import Home from './home/Home';
