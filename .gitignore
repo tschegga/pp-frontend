@@ -61,3 +61,4 @@ public/dist
 node_modules
 .vscode
 npm-debug.log
+.bak
