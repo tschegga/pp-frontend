@@ -72,7 +72,7 @@ export function doSignup(username, password) {
 }
 
 export function fetchSignup(username, password) {
-    return function (dispatch) {
+    return function d(dispatch) {
         dispatch(requestSignup(username, password));
 
         return fetch('http://localhost:1337')

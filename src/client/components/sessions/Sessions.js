@@ -3,87 +3,40 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import store from '../../../common/store/store';
 
-import moment from 'moment';
+import SessionsElements from './SessionsElements';
+import { fetchSessions } from '../../../common/actions/sessions';
 
 import * as Actions from '../../../common/actions';
 
-function makeRating(level) {
-    switch (level) {
-    case 0:
-        return 'unbefriedigend';
-    case 1:
-        return 'gut';
-    case 2:
-        return 'exzellent';
-    default:
-        return 'unknown';
-    }
-}
+class Sessions extends React.Component {
+    constructor() {
+        super();
 
-function makeStyle(level) {
-    switch (level) {
-    case 0:
-        return 'card bg-danger';
-    case 1:
-        return 'card bg-warning';
-    case 2:
-        return 'card bg-success';
-    default:
-        return 'card';
-    }
-}
-
-function Sessions({ sessions }) {
-    const cards = [];
-
-    if (sessions.length > 0) {
-        for (let i = 0; i < sessions.length; i += 1) {
-            const e = sessions[i];
-            const rating = makeRating(e.quality);
-            const start = moment.utc(e.start);
-            const time = start.locale('de').format('dddd, D.M. HH:mm');
-            const style = makeStyle(e.quality);
-
-            cards.push(
-                <div key={i} className={style}>
-                    <div className="card-body">
-                        <h5 className="card-title">
-                            Sitzung&nbsp;
-                            {i + 1}
-                        </h5>
-                        <div className="card-text">
-                            Zeitpunkt:&nbsp;
-                            {time}
-                            &nbsp;Uhr
-                            <br />
-                            Länge:&nbsp;
-                            {e.length}
-                            &nbsp;mins
-                            <br />
-                            Qualität:&nbsp;
-                            {rating}
-                        </div>
-                    </div>
-                </div>,
-            );
-        }
+        store.dispatch(fetchSessions(2));
     }
 
-    return (
-        <div>
-            <div className="card-group">
-                {cards}
-            </div>
-        </div>
-    );
+    componentDidMount() {
+    }
+
+    render() {
+        const { sessions } = this.props;
+        return (
+            <SessionsElements sessionsArray={sessions.sessionsArray} />
+        );
+    }
 }
 
 Sessions.propTypes = {
-    sessions: PropTypes.element.isRequired,
+    sessions: PropTypes.shape({
+        isFetching: PropTypes.bool.isRequired,
+        lastUpdated: PropTypes.number,
+        sessionsArray: PropTypes.array,
+    }).isRequired,
 };
 
-const mapStateToProps = state => ({ sessions: state.user.sessions });
+const mapStateToProps = state => ({ sessions: state.sessions });
 
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
