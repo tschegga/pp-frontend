@@ -11,13 +11,9 @@ import { fetchSessions } from '../../../common/actions/sessions';
 import * as Actions from '../../../common/actions';
 
 class Sessions extends React.Component {
-    constructor() {
-        super();
-
-        store.dispatch(fetchSessions(2));
-    }
-
     componentDidMount() {
+        // TODO: use the userid of the current user
+        store.dispatch(fetchSessions(2));
     }
 
     render() {
@@ -36,7 +32,10 @@ Sessions.propTypes = {
     }).isRequired,
 };
 
-const mapStateToProps = state => ({ sessions: state.sessions });
+const mapStateToProps = state => ({
+    sessions: state.sessions,
+    user: state.user,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
 
