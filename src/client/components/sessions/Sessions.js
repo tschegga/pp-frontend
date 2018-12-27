@@ -28,7 +28,7 @@ Sessions.propTypes = {
     sessions: PropTypes.shape({
         isFetching: PropTypes.bool.isRequired,
         lastUpdated: PropTypes.number,
-        sessionsArray: PropTypes.array,
+        sessionsArray: PropTypes.array.isRequired,
     }).isRequired,
 };
 
