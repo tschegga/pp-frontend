@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { BACKEND_URL } from '../../client/backend/backend';
+import { fetchData } from '../../client/backend/backend';
 
 export const REQUEST_RANKING = 'REQUEST_RANKING';
 export const RECEIVE_RANKING = 'RECEIVE_RANKING';
@@ -22,8 +22,7 @@ export function fetchRanking() {
     return function d(dispatch) {
         dispatch(requestRanking());
 
-        const url = `${BACKEND_URL}/v1/ranking`;
-        return fetch(url)
+        return fetchData('/v1/ranking')
             .then(
                 response => response.json(),
                 error => console.log(error),

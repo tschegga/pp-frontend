@@ -1,26 +1,21 @@
 import 'babel-polyfill';
 import 'isomorphic-fetch';
+import { Base64 } from 'js-base64';
 
-export const BACKEND_URL = 'http://localhost:1337';
-
-const handleErrors = (response) => {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
-};
+const BACKEND_URL = 'http://localhost:1337';
+// TODO: Replace with proper credentials
+const basicAuthUser = 'test';
+const basicAuthPassword = 'test';
 
 export function fetchData(path) {
     const url = `${BACKEND_URL}${path}`;
 
     // TODO: Cross-Origin-Header
-    return fetch(url)
-        .then(handleErrors)
-        .then(response => response.json())
-        .catch((err) => {
-            // TODO: proper error handling
-            console.error(err); // eslint-disable-line no-console
-        });
+    return fetch(url, {
+        headers: new Headers({
+            Authorization: `Basic ${Base64.encode(`${basicAuthUser}:${basicAuthPassword}`)}`,
+        }),
+    });
 }
 
 export function requestLogin() {
