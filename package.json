@@ -47,7 +47,7 @@
     "isomorphic-fetch": "^2.1.1",
     "jquery": "^3.5.0",
     "js-base64": "^2.5.2",
-    "moment": "^2.25.1",
+    "moment": "^2.29.4",
     "mongoose": "^5.9.11",
     "net": "^1.0.2",
     "popper.js": "^1.16.1",
