@@ -40,7 +40,7 @@
     "babel-polyfill": "^6.3.14",
     "babel-register": "^6.4.3",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "hapi": "^17.8.5",
     "history": "^1.13.0",
     "inert": "^3.2.0",
